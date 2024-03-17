@@ -1,10 +1,9 @@
-const express = require('express');
+const express = require("express");
 const UserRouter = express.Router();
 
-const { createUser,
-    getRandomUser } = require('../contdrollers/User');
+const { createUser, getRandomUser } = require("../controllers/User");
 
-UserRouter.post('/create', createUser);
-UserRouter.get('/random', getRandomUser);
+UserRouter.post("/create", createUser);
+UserRouter.get("/random", getRandomUser);
 
 module.exports = UserRouter;

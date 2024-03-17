@@ -19,7 +19,21 @@ const getAllPosts = async (req, res) => {
   }
 };
 
+const getPostById = async (req, res) => {
+  try {
+    const { id } = req.params; 
+    const post = await Post.findById(id).populate('createdBy', 'nickname');
+    if (!post) {
+      return res.status(404).json({ message: 'Post not found' });
+    }
+    res.status(200).json({ message: 'Post fetched successfully', data: post });
+  } catch (error) {
+    res.status(400).json({ message: 'Error fetching post', error: error.message });
+  }
+};
+
 module.exports = {
     createPost,
-    getAllPosts
+    getAllPosts,
+    getPostById
 }
